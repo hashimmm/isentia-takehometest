@@ -1,0 +1,7 @@
+.env
+.devcontainer
+.vscode
+__pycache__
+*.pyc
+src/test_data/*
+!src/test_data/.gitkeep

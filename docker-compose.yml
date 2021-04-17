@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  newswatcher:
+    depends_on:
+      - postgres
+    build: .
+    volumes:
+      - ./src:/code
+    command: "python /code/watcher.py"
+  postgres:
+    image: postgres:13
+    env_file:
+      - ./.env
+    ports:
+      - "5434:5432"
+    volumes:
+      - isentia_postgres_data:/var/lib/postgresql/data/:cached
+volumes:
+  isentia_postgres_data: {}
