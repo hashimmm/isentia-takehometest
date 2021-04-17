@@ -18,6 +18,11 @@ def print_changes(changes: list[Change]):
 
 
 def main(scanners: list[NewsScannerInterface], sleeper=time.sleep, engine=engine):
+    """The main program.
+
+    Ensure that the table exists, and then check all scanners for changes and print any changes.
+    Does this in a loop, forever, for some duration.
+    """
     ensure_table(engine)
     while True:
         all_changes = scan_news(scanners)

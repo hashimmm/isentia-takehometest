@@ -53,6 +53,7 @@ def make_news_getter():
 
 class ABCNewsTestCase(unittest.TestCase):
     def test_news_changes(self):
+        # This serves as our end to end test in a sense.
         abc_scanner = ABCScanner(get_url=make_news_getter(), connector=test_db_connector)
         self.assertFalse(bool(abc_scanner.get_last_content()))
         changes1 = abc_scanner.detect_changes()

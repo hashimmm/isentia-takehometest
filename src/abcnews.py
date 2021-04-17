@@ -10,6 +10,7 @@ class ABCScanner(NewsScannerInterface):
     get_url = None
 
     def __init__(self, **kwargs):
+        # This way get_url is mockable.
         if kwargs.get('get_url'):
             self.get_url = kwargs.pop('get_url')
         else:
@@ -17,8 +18,10 @@ class ABCScanner(NewsScannerInterface):
         super().__init__(**kwargs)
 
     def get_content(self) -> dict[str, str]:
+        """Get a mapping of links to headlines."""
         resp = self.get_url(self.url)
         soup = BeautifulSoup(resp.text, features='html.parser')
+        # all headlines have this class on them.
         elements = [x for x in soup.select("._7fOxm")]
         headlines: list[str]
         links: list[str]
